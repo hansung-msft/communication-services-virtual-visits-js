@@ -2,6 +2,9 @@
 
 name: CI
 
+env:
+  runs: node16
+
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events for main and release branches
