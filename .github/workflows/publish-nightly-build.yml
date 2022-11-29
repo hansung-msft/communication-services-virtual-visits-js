@@ -54,7 +54,8 @@ jobs:
   release:
     name: Publish Nightly Release
     needs: checkForChanges
-    if: needs.checkForChanges.outputs.hasChanged == 'true'
+    # if: needs.checkForChanges.outputs.hasChanged == 'true'
+    if: ${{ env.hasChanged }} == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Install Node.js v14.19.x
