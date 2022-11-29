@@ -46,15 +46,15 @@ jobs:
           days=$(( ($currentTimestamp - $timestamp ) / 86400 ))
           echo Days since last commit: $days
           if [ $days = "0" ]; then
-            echo "hasChanged=true" >> $GITHUB_OUTPUT
+            echo "hasChanged=true" >> $GITHUB_ENV
           else
-            echo "hasChanged=false" >> $GITHUB_OUTPUT
+            echo "hasChanged=false" >> $GITHUB_ENV
           fi
 
   release:
     name: Publish Nightly Release
     needs: checkForChanges
-    if: needs.checkForChanges.outputs.hasChanged == 'true'
+    if: needs.checkForChanges.env.hasChanged == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Install Node.js v14.19.x
