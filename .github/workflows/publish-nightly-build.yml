@@ -47,8 +47,10 @@ jobs:
           echo Days since last commit: $days
           if [ $days = "0" ]; then
             echo "hasChanged=true" >> $GITHUB_ENV
+            echo "true"
           else
             echo "hasChanged=false" >> $GITHUB_ENV
+            echo "false"
           fi
 
   release:
