@@ -47,6 +47,7 @@ jobs:
           echo Days since last commit: $days
           if [ $days = "0" ]; then
             echo "hasChanged=true" >> $GITHUB_ENV
+            echo "hasChanged=true" >> $GITHUB_OUTPUT
             echo "true"
             echo ${{ env }}
           else
@@ -57,7 +58,7 @@ jobs:
   release:
     name: Publish Nightly Release
     needs: checkForChanges
-    if: ${{ env.hasChanged }} == 'true'
+    if: needs.checkForChanges.env.hasChanged == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Install Node.js v14.19.x
